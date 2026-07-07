@@ -1,11 +1,6 @@
+import { Link } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 
-// ---------------------------------------------------------------------------
-// HomePage — placeholder screen for now.
-// Will become the event browsing feed in the next phase.
-// Kept minimal intentionally: the goal right now is to confirm that
-// AuthContext, ProtectedRoute, and routing all work end-to-end.
-// ---------------------------------------------------------------------------
 export default function HomePage() {
   const { user, signOut } = useAuth()
 
@@ -13,9 +8,8 @@ export default function HomePage() {
     <div style={styles.container}>
       <h1 style={styles.title}>Welcome to Dancer App</h1>
       <p style={styles.email}>Signed in as: {user?.email}</p>
-      <button onClick={signOut} style={styles.button}>
-        Sign out
-      </button>
+      <Link to="/events" style={styles.eventsLink}>Browse Events →</Link>
+      <button onClick={signOut} style={styles.button}>Sign out</button>
     </div>
   )
 }
@@ -35,6 +29,11 @@ const styles: Record<string, React.CSSProperties> = {
   },
   email: {
     color: '#555',
+    fontSize: '0.95rem',
+  },
+  eventsLink: {
+    color: '#fff',
+    fontWeight: 500,
     fontSize: '0.95rem',
   },
   button: {
